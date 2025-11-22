@@ -5,7 +5,10 @@ package com.example.journalservice.core.service;
 import com.example.journalservice.core.model.Encounter;
 import com.example.journalservice.core.model.Observation;
 import com.example.journalservice.core.model.Patient;
+import com.example.journalservice.db.EncounterRepository;
+import com.example.journalservice.db.ObservationRepository;
 import com.example.journalservice.db.PatientRepository;
+import com.example.journalservice.ui.dto.PatientDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +23,13 @@ import java.util.UUID;
 public class PatientService {
 
     private final PatientRepository patientRepository;
+    private final EncounterRepository encounterRepository;
+    private final ObservationRepository observationRepository;
 
-    public PatientService(PatientRepository patientRepository) {
+    public PatientService(PatientRepository patientRepository, EncounterRepository encounterRepository, ObservationRepository observationRepository) {
         this.patientRepository = patientRepository;
+        this.encounterRepository = encounterRepository;
+        this.observationRepository = observationRepository;
     }
 
     public Patient save(Patient patient) {
@@ -60,12 +67,11 @@ public class PatientService {
 
         List<Observation> observations = observationRepository.findByPatientId(patient.getId());
 
-        List<ObservationDTO> observationDtos = observations.stream()
-                .map(ObservationDTO::new)
-                .toList();
 
-        return new PatientOverviewDTO(patient, encounters, observationDtos);
+        return new PatientDTO(patient, encounters, observations).getPatient();
     }
+
+
     public Optional<Patient> findByUserId(UUID userId) {
         return patientRepository.findByUserId(userId);
     }
