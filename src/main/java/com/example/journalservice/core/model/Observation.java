@@ -11,6 +11,7 @@ public class Observation {
 
     @Id
     @GeneratedValue
+    @Column(name = "id", columnDefinition = "CHAR(36)")
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -19,10 +20,10 @@ public class Observation {
     private Encounter encounter;
 
 
-    @Column(name = "patientid", columnDefinition = "uuid")
+    @Column(name = "patientid", columnDefinition = "CHAR(36)")
     private UUID patientId;
 
-    @Column(name = "practitionerid", columnDefinition = "uuid")
+    @Column(name = "practitionerid", columnDefinition = "CHAR(36)")
     private UUID practitionerId;
 
     @Column(name = "observationtext")

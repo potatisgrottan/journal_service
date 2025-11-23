@@ -4,6 +4,8 @@ package com.example.journalservice.core.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,16 +17,16 @@ public class Encounter {
 
     @Id
     @GeneratedValue
-    @Column(name = "encounterid", columnDefinition = "uuid")
+    @Column(name = "id",columnDefinition = "CHAR(36)")
     private UUID id;
 
     @Column(name = "dateofencounter")
     private Date dateOfEncounter;
 
-    @Column(name = "patientid", columnDefinition = "uuid")
+    @Column(name = "patientid", columnDefinition = "CHAR(36)")
     private UUID patientId;
 
-    @Column(name = "practitionerid", columnDefinition = "uuid")
+    @Column(name = "practitionerid", columnDefinition = "CHAR(36)")
     private UUID practitionerId;
 
     @Column(name = "location")
@@ -44,7 +46,6 @@ public class Encounter {
         this.location = location;
     }
 
-    // Getters and setters
     public UUID getId() { return id; }
     public void setId(UUID encounterId) { this.id = encounterId; }
 

@@ -11,6 +11,7 @@ public class Patient {
 
     @Id
     @GeneratedValue
+    @Column(name="id", columnDefinition = "CHAR(36)")
     private UUID id;
 
     private String name;
