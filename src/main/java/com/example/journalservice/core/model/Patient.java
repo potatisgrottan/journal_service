@@ -2,6 +2,7 @@ package com.example.journalservice.core.model;
 
 import com.example.journalservice.core.enums.HospitalRole;
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
 
@@ -9,8 +10,8 @@ import java.util.Date;
 public class Patient {
 
     @Id
-    @GeneratedValue(generator = "String2")
-    @GenericGenerator(name = "String2", strategy = "String2")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name="id", columnDefinition = "CHAR(36)")
     private String id;
 

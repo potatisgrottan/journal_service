@@ -2,6 +2,7 @@ package com.example.journalservice.core.model;
 
 import com.example.journalservice.core.enums.HospitalRole;
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
