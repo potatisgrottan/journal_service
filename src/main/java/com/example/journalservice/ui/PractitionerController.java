@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/practitioner")
@@ -27,7 +27,7 @@ public class PractitionerController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Practitioner> findByPractitionerId(@PathVariable("id") UUID practitionerId) {
+    public Optional<Practitioner> findByPractitionerId(@PathVariable("id") String practitionerId) {
         return practitionerService.findById(practitionerId);
     }
 }

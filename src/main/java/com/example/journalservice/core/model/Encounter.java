@@ -9,25 +9,26 @@ import org.hibernate.annotations.GenericGenerator;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+
 
 @Entity
 @Table(name = "encounter")
 public class Encounter {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "String2")
+    @GenericGenerator(name = "String2", strategy = "String2")
     @Column(name = "id",columnDefinition = "CHAR(36)")
-    private UUID id;
+    private String id;
 
     @Column(name = "dateofencounter")
     private Date dateOfEncounter;
 
     @Column(name = "patientid", columnDefinition = "CHAR(36)")
-    private UUID patientId;
+    private String patientId;
 
     @Column(name = "practitionerid", columnDefinition = "CHAR(36)")
-    private UUID practitionerId;
+    private String practitionerId;
 
     @Column(name = "location")
     private String location;
@@ -39,24 +40,24 @@ public class Encounter {
 
     public Encounter() {}
 
-    public Encounter(UUID patientId, UUID practitionerId, Date dateOfEncounter, String location) {
+    public Encounter(String patientId, String practitionerId, Date dateOfEncounter, String location) {
         this.patientId = patientId;
         this.practitionerId = practitionerId;
         this.dateOfEncounter = dateOfEncounter;
         this.location = location;
     }
 
-    public UUID getId() { return id; }
-    public void setId(UUID encounterId) { this.id = encounterId; }
+    public String getId() { return id; }
+    public void setId(String encounterId) { this.id = encounterId; }
 
     public Date getDateOfEncounter() { return dateOfEncounter; }
     public void setDateOfEncounter(Date dateOfEncounter) { this.dateOfEncounter = dateOfEncounter; }
 
-    public UUID getPatientId() { return patientId; }
-    public void setPatientId(UUID patientId) { this.patientId = patientId; }
+    public String getPatientId() { return patientId; }
+    public void setPatientId(String patientId) { this.patientId = patientId; }
 
-    public UUID getPractitionerId() { return practitionerId; }
-    public void setPractitionerId(UUID practitionerId) { this.practitionerId = practitionerId; }
+    public String getPractitionerId() { return practitionerId; }
+    public void setPractitionerId(String practitionerId) { this.practitionerId = practitionerId; }
 
     public String getLocation() { return location; }
     public void setLocation(String location) { this.location = location; }

@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 @Service
 @Transactional
@@ -40,7 +40,7 @@ public class PatientService {
         return patientRepository.findAll();
     }
 
-    public Patient findById(UUID id) {
+    public Patient findById(String id) {
         return patientRepository.findById(id).orElse(null);
     }
 
@@ -56,7 +56,7 @@ public class PatientService {
         return patientRepository.findByDateOfBirth(dateOfBirth);
     }
 
-    public Patient getPatientOverview(UUID patientId) {
+    public Patient getPatientOverview(String patientId) {
 
         Patient patient = findById(patientId);
         if (patient == null) {
@@ -72,7 +72,7 @@ public class PatientService {
     }
 
 
-    public Optional<Patient> findByUserId(UUID userId) {
+    public Optional<Patient> findByUserId(String userId) {
         return patientRepository.findByUserId(userId);
     }
 }

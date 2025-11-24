@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/patients")
@@ -29,7 +29,7 @@ public class PatientController {
     }
 
     @GetMapping("/id/{id}")
-    public Patient getPatient(@PathVariable UUID id) {
+    public Patient getPatient(@PathVariable String id) {
         return patientService.findById(id);
     }
 
@@ -53,7 +53,7 @@ public class PatientController {
     }
 
     @GetMapping("/{patientId}/overview")
-    public Patient getOverview(@PathVariable UUID patientId) {
+    public Patient getOverview(@PathVariable String patientId) {
         return patientService.getPatientOverview(patientId);
     }
 

@@ -3,12 +3,12 @@ package com.example.journalservice.ui.dto;
 import com.example.journalservice.core.model.Observation;
 
 import java.util.Date;
-import java.util.UUID;
+
 
 public class ObservationDTO {
 
-    private UUID id;
-    private UUID encounterId;
+    private String id;
+    private String encounterId;
     private String observationText;
     private Date timeOfObservation;
 
@@ -21,11 +21,11 @@ public class ObservationDTO {
         this.encounterId = o.getEncounter().getId();
     }
 
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public UUID getEncounterId() { return encounterId; }
-    public void setEncounterId(UUID encounterId) { this.encounterId = encounterId; }
+    public String getEncounterId() { return encounterId; }
+    public void setEncounterId(String encounterId) { this.encounterId = encounterId; }
 
     public String getObservationText() { return observationText; }
     public void setObservationText(String observationText) { this.observationText = observationText; }

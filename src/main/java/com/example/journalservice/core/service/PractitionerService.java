@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 @Service
 @Transactional
@@ -26,11 +26,11 @@ public class PractitionerService {
     }
 
 
-    public Optional<Practitioner> findById(UUID id) {
+    public Optional<Practitioner> findById(String id) {
         return practitionerRepository.findById(id);
     }
 
-    public Optional<Practitioner> findByUserId(UUID userId) {
+    public Optional<Practitioner> findByUserId(String userId) {
         return practitionerRepository.findByUserId(userId);
     }
 

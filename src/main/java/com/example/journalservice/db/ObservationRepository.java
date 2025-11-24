@@ -4,13 +4,13 @@ import com.example.journalservice.core.model.Observation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface ObservationRepository extends JpaRepository<Observation, UUID> {
+
+public interface ObservationRepository extends JpaRepository<Observation, String> {
     //List<Observation> findByPatient(Patient patientId);
     //List<Observation> findByTimeOfObservation(Date date);
     //List<Observation> findByEncounter(Encounter encounter);
-    List<Observation> findAllByPatientId(UUID patientId) ;
-    List<Observation> findAllByEncounterId(UUID encounterId);
-    List<Observation> findByPatientId(UUID patientId);
+    List<Observation> findAllByPatientId(String patientId) ;
+    List<Observation> findAllByEncounterId(String encounterId);
+    List<Observation> findByPatientId(String patientId);
 }

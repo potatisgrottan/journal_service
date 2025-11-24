@@ -3,16 +3,17 @@ package com.example.journalservice.core.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.UUID;
+
 
 @Entity
 @Table(name="observation")
 public class Observation {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "CHAR(36)")
-    private UUID id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "encounterid", nullable = false)
@@ -21,10 +22,10 @@ public class Observation {
 
 
     @Column(name = "patientid", columnDefinition = "CHAR(36)")
-    private UUID patientId;
+    private String patientId;
 
     @Column(name = "practitionerid", columnDefinition = "CHAR(36)")
-    private UUID practitionerId;
+    private String practitionerId;
 
     @Column(name = "observationtext")
     private String observation;
@@ -36,7 +37,7 @@ public class Observation {
         this.timeOfObservation = new Date();
     }
 
-    public Observation(Encounter encounter, UUID patientId, UUID practitionerId, String observation) {
+    public Observation(Encounter encounter, String patientId, String practitionerId, String observation) {
         this.encounter = encounter;
         this.patientId = patientId;
         this.practitionerId = practitionerId;
@@ -44,17 +45,17 @@ public class Observation {
         this.timeOfObservation = new Date();
     }
 
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public Encounter getEncounter() { return encounter; }
     public void setEncounter(Encounter encounter) { this.encounter = encounter; }
 
-    public UUID getPatientId() { return patientId; }
-    public void setPatientId(UUID patientId) { this.patientId = patientId; }
+    public String getPatientId() { return patientId; }
+    public void setPatientId(String patientId) { this.patientId = patientId; }
 
-    public UUID getPractitionerId() { return practitionerId; }
-    public void setPractitionerId(UUID practitionerId) { this.practitionerId = practitionerId; }
+    public String getPractitionerId() { return practitionerId; }
+    public void setPractitionerId(String practitionerId) { this.practitionerId = practitionerId; }
 
     public String getObservation() { return observation; }
     public void setObservation(String observation) { this.observation = observation; }

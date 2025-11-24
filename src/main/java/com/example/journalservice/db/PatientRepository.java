@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-public interface PatientRepository extends JpaRepository<Patient, UUID> {
+
+public interface PatientRepository extends JpaRepository<Patient, String> {
 
 
     Patient findByName(String name);
@@ -18,6 +18,6 @@ public interface PatientRepository extends JpaRepository<Patient, UUID> {
 
     List<Patient> findByDateOfBirth(Date dateOfBirth);
 
-    Optional<Patient> findByUserId(UUID userId);
+    Optional<Patient> findByUserId(String userId);
 
 }

@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-public interface PractitionerRepository extends JpaRepository<Practitioner, UUID> {
-    Optional<Practitioner> findById(UUID Id);
+
+public interface PractitionerRepository extends JpaRepository<Practitioner, String> {
+    Optional<Practitioner> findById(String Id);
     Practitioner findByName(String practitionerName);
     List<Practitioner> findByHospitalRole(HospitalRole role);
 
-    Optional<Practitioner> findByUserId(UUID userId);
+    Optional<Practitioner> findByUserId(String userId);
 }

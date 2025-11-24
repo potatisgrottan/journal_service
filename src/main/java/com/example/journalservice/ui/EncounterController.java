@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/encounters")
@@ -19,8 +19,8 @@ public class EncounterController {
     }
 
     @PostMapping
-    public Encounter createEncounter(@RequestParam UUID userId,
-                                     @RequestParam UUID patientId,
+    public Encounter createEncounter(@RequestParam String userId,
+                                     @RequestParam String patientId,
                                      @RequestParam String location) {
 
         return encounterService.addEncounter(
@@ -32,13 +32,13 @@ public class EncounterController {
     }
 
     @GetMapping("/patient/{patientId}")
-    public List<Encounter> getEncountersForPatient(@PathVariable UUID patientId) {
+    public List<Encounter> getEncountersForPatient(@PathVariable String patientId) {
         return encounterService.findAllEncByPatient(patientId);
     }
 
     @GetMapping("/doctor/{practitionerId}/patient/{patientId}")
-    public List<Encounter> doctorGetsEncounters(@PathVariable UUID practitionerId,
-                                                @PathVariable UUID patientId) {
+    public List<Encounter> doctorGetsEncounters(@PathVariable String practitionerId,
+                                                @PathVariable String patientId) {
         return encounterService.findAllEncByPatient(patientId);
     }
 }

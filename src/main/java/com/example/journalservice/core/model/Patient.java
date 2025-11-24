@@ -4,15 +4,15 @@ import com.example.journalservice.core.enums.HospitalRole;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 public class Patient {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "String2")
+    @GenericGenerator(name = "String2", strategy = "String2")
     @Column(name="id", columnDefinition = "CHAR(36)")
-    private UUID id;
+    private String id;
 
     private String name;
     private String personalNumber;
@@ -42,8 +42,8 @@ public class Patient {
 
 
 
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

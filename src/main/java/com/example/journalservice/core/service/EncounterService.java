@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 @Service
 @Transactional
@@ -63,7 +63,7 @@ public class EncounterService {
     }*/
 
 
-    public Encounter addEncounter(UUID userId, UUID patientId, Date date, String location) {
+    public Encounter addEncounter(String userId, String patientId, Date date, String location) {
 
         Practitioner practitioner = practitionerService.findByUserId(userId)
                 .orElseThrow(() -> new RuntimeException("Practitioner not found for user id: " + userId));
@@ -84,11 +84,11 @@ public class EncounterService {
 
 
 
-    public List<Encounter> findAllEncByPatient(UUID patientId) {
+    public List<Encounter> findAllEncByPatient(String patientId) {
         return encounterRepository.findAllByPatientId(patientId);
     }
 
-    public List<Encounter> findAllByPractitioner(UUID practitionerId) {
+    public List<Encounter> findAllByPractitioner(String practitionerId) {
         return encounterRepository.findAllByPractitionerId(practitionerId);
     }
 
@@ -96,7 +96,7 @@ public class EncounterService {
         return encounterRepository.save(encounter);
     }
 
-    public Optional<Encounter> findById(UUID encounterId) {
+    public Optional<Encounter> findById(String encounterId) {
         return encounterRepository.findById(encounterId);
     }
 
@@ -104,18 +104,18 @@ public class EncounterService {
         return observationRepository.save(observation);
     }
 
-    public List<ObservationDTO> findAllObsByPatient(UUID patientId) {
+    public List<ObservationDTO> findAllObsByPatient(String patientId) {
         return observationRepository.findAllByPatientId(patientId)
                 .stream()
                 .map(ObservationDTO::new)
                 .toList();
     }
 
-    public List<ObservationDTO> findAllByEncounter(UUID encounterId) {
+    public List<ObservationDTO> findAllByEncounter(String encounterId) {
         return observationRepository.findAllByEncounterId(encounterId).stream().map(ObservationDTO::new).toList();
     }
 
-    public Observation addObservation(UUID encounterId, Observation dto) {
+    public Observation addObservation(String encounterId, Observation dto) {
 
         Encounter encounter = encounterRepository.findById(encounterId)
                 .orElseThrow(() -> new RuntimeException("Encounter not found"));
