@@ -16,8 +16,8 @@ import java.util.List;
 public class Encounter {
 
     @Id
-    @GeneratedValue(generator = "String2")
-    @GenericGenerator(name = "String2", strategy = "String2")
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id",columnDefinition = "CHAR(36)")
     private String id;
 
