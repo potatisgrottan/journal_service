@@ -15,5 +15,5 @@ public interface PractitionerRepository extends JpaRepository<Practitioner, Stri
     Practitioner findByName(String practitionerName);
     List<Practitioner> findByHospitalRole(HospitalRole role);
 
-    Optional<Practitioner> findByUserId(String userId);
+    //Optional<Practitioner> findByUserId(String userId);
 }

@@ -31,7 +31,7 @@ public class PractitionerService {
     }
 
     public Optional<Practitioner> findByUserId(String userId) {
-        return practitionerRepository.findByUserId(userId);
+        return practitionerRepository.findById(userId);
     }
 
 

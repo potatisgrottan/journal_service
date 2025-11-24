@@ -18,6 +18,6 @@ public interface PatientRepository extends JpaRepository<Patient, String> {
 
     List<Patient> findByDateOfBirth(Date dateOfBirth);
 
-    Optional<Patient> findByUserId(String userId);
+    Optional<Patient> findById(String userId);
 
 }

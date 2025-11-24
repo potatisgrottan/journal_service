@@ -63,8 +63,7 @@ public class PatientController {
             throw new RuntimeException("Only patients can view their own overview");
         }
 
-        Patient patient = patientService.findByUserId(currentUser.getId())
-                .orElseThrow(() -> new RuntimeException("Patient not found for user id: " + currentUser.getId()));
+        Patient patient = patientService.findById(currentUser.getId());
 
         return patientService.getPatientOverview(patient.getId());
     }

@@ -72,7 +72,7 @@ public class PatientService {
     }
 
 
-    public Optional<Patient> findByUserId(String userId) {
+    /*public Optional<Patient> findById(String userId) {
         return patientRepository.findByUserId(userId);
-    }
+    }*/
 }
