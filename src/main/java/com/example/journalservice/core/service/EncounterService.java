@@ -115,7 +115,7 @@ public class EncounterService {
         return observationRepository.findAllByEncounterId(encounterId).stream().map(ObservationDTO::new).toList();
     }
 
-    public Observation addObservation(String encounterId, Observation dto) {
+    public Observation addObservation(String encounterId, ObservationDTO dto) {
 
         Encounter encounter = encounterRepository.findById(encounterId)
                 .orElseThrow(() -> new RuntimeException("Encounter not found"));
@@ -124,7 +124,7 @@ public class EncounterService {
         obs.setEncounter(encounter);
         obs.setPatientId(encounter.getPatientId());
         obs.setPractitionerId(encounter.getPractitionerId());
-        obs.setObservation(dto.getObservation());
+        obs.setObservation(dto.getObservationText());
         obs.setTimeOfObservation(dto.getTimeOfObservation() != null ? dto.getTimeOfObservation() : new Date());
 
         return  observationRepository.save(obs);

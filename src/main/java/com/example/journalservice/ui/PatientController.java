@@ -2,6 +2,7 @@ package com.example.journalservice.ui;
 
 
 
+import com.example.journalservice.core.enums.HospitalRole;
 import com.example.journalservice.core.model.Patient;
 import com.example.journalservice.core.service.PatientService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -47,8 +48,12 @@ public class PatientController {
         return patientService.findByDateOfBirth(dateOfBirth);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Patient createPatient(@RequestBody Patient patient) {
+
+        if(patient.getRole() == null){
+            patient.setRole(HospitalRole.PATIENT);
+        }
         return patientService.save(patient);
     }
 
