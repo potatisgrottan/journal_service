@@ -10,7 +10,8 @@ public interface ObservationRepository extends JpaRepository<Observation, String
     //List<Observation> findByPatient(Patient patientId);
     //List<Observation> findByTimeOfObservation(Date date);
     //List<Observation> findByEncounter(Encounter encounter);
-    List<Observation> findAllByPatientId(String patientId) ;
+    //List<Observation> findAllByPatientId(String patientId) ;
     List<Observation> findAllByEncounterId(String encounterId);
-    List<Observation> findByPatientId(String patientId);
+    //List<Observation> findByPatientId(String patientId);
+    List<Observation> findAllByPatientEmail(String patientEmail);
 }

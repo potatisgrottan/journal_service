@@ -23,11 +23,11 @@ public class Observation {
     private Encounter encounter;
 
 
-    @Column(name = "patientid", columnDefinition = "CHAR(36)")
-    private String patientId;
+    @Column(name = "patientEmail", columnDefinition = "VARCHAR(225)")
+    private String patientEmail;
 
-    @Column(name = "practitionerid", columnDefinition = "CHAR(36)")
-    private String practitionerId;
+    @Column(name = "practitionerEmail", columnDefinition = "VARCHAR(225)")
+    private String practitionerEmail;
 
     @Column(name = "observationtext")
     private String observation;
@@ -39,10 +39,10 @@ public class Observation {
         this.timeOfObservation = new Date();
     }
 
-    public Observation(Encounter encounter, String patientId, String practitionerId, String observation) {
+    public Observation(Encounter encounter, String patientEmail, String practitionerEmail, String observation) {
         this.encounter = encounter;
-        this.patientId = patientId;
-        this.practitionerId = practitionerId;
+        this.patientEmail = Observation.this.patientEmail;
+        this.practitionerEmail = practitionerEmail;
         this.observation = observation;
         this.timeOfObservation = new Date();
     }
@@ -53,11 +53,11 @@ public class Observation {
     public Encounter getEncounter() { return encounter; }
     public void setEncounter(Encounter encounter) { this.encounter = encounter; }
 
-    public String getPatientId() { return patientId; }
-    public void setPatientId(String patientId) { this.patientId = patientId; }
+    public String getpatientEmail() { return patientEmail; }
+    public void setpatientEmail(String patientEmail) { this.patientEmail = Observation.this.patientEmail; }
 
-    public String getPractitionerId() { return practitionerId; }
-    public void setPractitionerId(String practitionerId) { this.practitionerId = practitionerId; }
+    public String getPractitionerEmail() { return practitionerEmail; }
+    public void setPractitionerEmail(String practitionerEmail) { this.practitionerEmail = practitionerEmail; }
 
     public String getObservation() { return observation; }
     public void setObservation(String observation) { this.observation = observation; }
@@ -70,8 +70,8 @@ public class Observation {
         return "Observation{" +
                 "id=" + id +
                 ", encounter=" + (encounter != null ? encounter.getId() : null) +
-                ", patientId=" + patientId +
-                ", practitionerId=" + practitionerId +
+                ", patientEmail=" + patientEmail +
+                ", practitionerEmail=" + practitionerEmail +
                 ", observation='" + observation + '\'' +
                 ", timeOfObservation=" + timeOfObservation +
                 '}';

@@ -24,11 +24,11 @@ public class Encounter {
     @Column(name = "dateofencounter")
     private Date dateOfEncounter;
 
-    @Column(name = "patientid", columnDefinition = "CHAR(36)")
-    private String patientId;
+    @Column(name = "patientEmail", columnDefinition = "VARCHAR(225)")
+    private String patientEmail;
 
-    @Column(name = "practitionerid", columnDefinition = "CHAR(36)")
-    private String practitionerId;
+    @Column(name = "practitionerEmail", columnDefinition = "VARCHAR(225)")
+    private String practitionerEmail;
 
     @Column(name = "location")
     private String location;
@@ -40,9 +40,9 @@ public class Encounter {
 
     public Encounter() {}
 
-    public Encounter(String patientId, String practitionerId, Date dateOfEncounter, String location) {
-        this.patientId = patientId;
-        this.practitionerId = practitionerId;
+    public Encounter(String patientEmail, String practitionerEmail, Date dateOfEncounter, String location) {
+        this.patientEmail = patientEmail;
+        this.practitionerEmail = Encounter.this.practitionerEmail;
         this.dateOfEncounter = dateOfEncounter;
         this.location = location;
     }
@@ -53,11 +53,11 @@ public class Encounter {
     public Date getDateOfEncounter() { return dateOfEncounter; }
     public void setDateOfEncounter(Date dateOfEncounter) { this.dateOfEncounter = dateOfEncounter; }
 
-    public String getPatientId() { return patientId; }
-    public void setPatientId(String patientId) { this.patientId = patientId; }
+    public String getPatientEmail() { return patientEmail; }
+    public void setPatientEmail(String patientEmail) { this.patientEmail = patientEmail; }
 
-    public String getPractitionerId() { return practitionerId; }
-    public void setPractitionerId(String practitionerId) { this.practitionerId = practitionerId; }
+    public String getpractitionerEmail() { return practitionerEmail; }
+    public void setpractitionerEmail(String practitionerEmail) { this.practitionerEmail = Encounter.this.practitionerEmail; }
 
     public String getLocation() { return location; }
     public void setLocation(String location) { this.location = location; }
@@ -79,8 +79,8 @@ public class Encounter {
     public String toString() {
         return "Encounter{" +
                 "encounterId=" + id +
-                ", patientId=" + patientId +
-                ", practitionerId=" + practitionerId +
+                ", patientEmail=" + patientEmail +
+                ", practitionerEmail=" + practitionerEmail +
                 ", dateOfEncounter=" + dateOfEncounter +
                 ", location='" + location + '\'' +
                 ", observations=" + observations.size() +

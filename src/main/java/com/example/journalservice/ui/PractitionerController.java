@@ -1,6 +1,6 @@
 package com.example.journalservice.ui;
 
-
+/*
 import com.example.journalservice.core.model.Practitioner;
 import com.example.journalservice.core.service.PractitionerService;
 import org.springframework.web.bind.annotation.*;
@@ -33,4 +33,4 @@ public class PractitionerController {
         return practitionerService.findById(practitionerId);
     }
 }
-
+*/

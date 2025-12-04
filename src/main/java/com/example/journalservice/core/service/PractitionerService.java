@@ -1,5 +1,5 @@
 package com.example.journalservice.core.service;
-
+/*
 
 
 
@@ -42,5 +42,5 @@ public class PractitionerService {
     public Practitioner save(Practitioner practitioner) {
         return practitionerRepository.save(practitioner);
     }
-}
+}*/
 

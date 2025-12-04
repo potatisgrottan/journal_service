@@ -24,24 +24,24 @@ public class EncounterController {
 
     @PostMapping("/make")
     public Encounter createEncounter(@RequestBody Encounter encounter) {
-
         return encounterService.addEncounter(
-                encounter.getPractitionerId(),
-                encounter.getPatientId(),
+                encounter.getpractitionerEmail(),
+                encounter.getPatientEmail(),
                 new Date(),
                 encounter.getLocation()
         );
     }
+
 
     @GetMapping("/patient/{patientId}")
     public List<Encounter> getEncountersForPatient(@PathVariable String patientId) {
         return encounterService.findAllEncByPatient(patientId);
     }
 
-    @GetMapping("/doctor/{practitionerId}/patient/{patientId}")
-    public List<Encounter> doctorGetsEncounters(@PathVariable String practitionerId,
-                                                @PathVariable String patientId) {
-        return encounterService.findAllEncByPatient(patientId);
+    @GetMapping("/doctor/{practitionerEmail}/patient/{patientEmail}")
+    public List<Encounter> doctorGetsEncounters(@PathVariable String practitionerEmail,
+                                                @PathVariable String patientEmail) {
+        return encounterService.findAllEncByPatient(patientEmail);
     }
 
     @GetMapping("/{encounterId}/observations")
@@ -49,9 +49,10 @@ public class EncounterController {
         return encounterService.findAllByEncounter(encounterId);
     }
 
-    @GetMapping("/patient/{patientId}/observations")
-    public List<ObservationDTO> getObservationsByPatient(@PathVariable String patientId) {
-        return encounterService.findAllObsByPatient(patientId);
+
+    @GetMapping("/patient/{patientEmail}/observations")
+    public List<ObservationDTO> getObservationsByPatient(@PathVariable String patientEmail) {
+        return encounterService.findAllObsByPatient(patientEmail);
     }
 
     @PostMapping("/{encounterId}/observations")

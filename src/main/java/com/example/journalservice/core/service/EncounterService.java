@@ -3,8 +3,8 @@ package com.example.journalservice.core.service;
 
 import com.example.journalservice.core.model.Encounter;
 import com.example.journalservice.core.model.Observation;
-import com.example.journalservice.core.model.Patient;
-import com.example.journalservice.core.model.Practitioner;
+//import com.example.journalservice.core.model.Patient;
+//import com.example.journalservice.core.model.Practitioner;
 import com.example.journalservice.db.EncounterRepository;
 import com.example.journalservice.db.ObservationRepository;
 import com.example.journalservice.ui.dto.ObservationDTO;
@@ -21,16 +21,15 @@ import java.util.Optional;
 public class EncounterService {
 
     private final EncounterRepository encounterRepository;
-    private final PatientService patientService;
-    private final PractitionerService practitionerService;
+   // private final PatientService patientService;
+   // private final PractitionerService practitionerService;
     private final ObservationRepository observationRepository;
 
     public EncounterService(EncounterRepository encounterRepository,
-                            PatientService patientService,
-                            PractitionerService practitionerService, ObservationRepository observationRepository) {
+                            ObservationRepository observationRepository) {
         this.encounterRepository = encounterRepository;
-        this.patientService = patientService;
-        this.practitionerService = practitionerService;
+        /*this.patientService = patientService;
+        this.practitionerService = practitionerService;*/
         this.observationRepository = observationRepository;
     }
 
@@ -63,34 +62,26 @@ public class EncounterService {
     }*/
 
 
-    public Encounter addEncounter(String userId, String patientId, Date date, String location) {
-
-        Practitioner practitioner = practitionerService.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("Practitioner not found for user id: " + userId));
-
-        Patient patient = patientService.findById(patientId);
-        if (patient == null) {
-            throw new RuntimeException("Patient not found for id: " + patientId);
-        }
-
+    public Encounter addEncounter(String practitionerEmail, String patientEmail, Date date, String location) {
         Encounter encounter = new Encounter();
-        encounter.setPractitionerId(practitioner.getId());
-        encounter.setPatientId(patient.getId());
+        encounter.setpractitionerEmail(practitionerEmail);
+        encounter.setPatientEmail(patientEmail);
         encounter.setDateOfEncounter(date);
         encounter.setLocation(location);
-
         return encounterRepository.save(encounter);
     }
 
 
 
-    public List<Encounter> findAllEncByPatient(String patientId) {
-        return encounterRepository.findAllByPatientId(patientId);
+
+    public List<Encounter> findAllEncByPatient(String patientEmail) {
+        return encounterRepository.findAllByPatientEmail(patientEmail);
     }
 
-    public List<Encounter> findAllByPractitioner(String practitionerId) {
-        return encounterRepository.findAllByPractitionerId(practitionerId);
+    public List<Encounter> findAllByPractitioner(String practitionerEmail) {
+        return encounterRepository.findAllByPractitionerEmail(practitionerEmail);
     }
+
 
     public Encounter save(Encounter encounter) {
         return encounterRepository.save(encounter);
@@ -104,8 +95,8 @@ public class EncounterService {
         return observationRepository.save(observation);
     }
 
-    public List<ObservationDTO> findAllObsByPatient(String patientId) {
-        return observationRepository.findAllByPatientId(patientId)
+    public List<ObservationDTO> findAllObsByPatient(String patientEmail) {
+        return observationRepository.findAllByPatientEmail(patientEmail)
                 .stream()
                 .map(ObservationDTO::new)
                 .toList();
@@ -116,19 +107,19 @@ public class EncounterService {
     }
 
     public Observation addObservation(String encounterId, ObservationDTO dto) {
-
         Encounter encounter = encounterRepository.findById(encounterId)
                 .orElseThrow(() -> new RuntimeException("Encounter not found"));
 
         Observation obs = new Observation();
         obs.setEncounter(encounter);
-        obs.setPatientId(encounter.getPatientId());
-        obs.setPractitionerId(encounter.getPractitionerId());
+        obs.setpatientEmail(encounter.getPatientEmail());
+        obs.setPractitionerEmail(encounter.getpractitionerEmail());
         obs.setObservation(dto.getObservationText());
         obs.setTimeOfObservation(dto.getTimeOfObservation() != null ? dto.getTimeOfObservation() : new Date());
 
-        return  observationRepository.save(obs);
+        return observationRepository.save(obs);
     }
+
 
 }
 

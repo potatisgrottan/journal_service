@@ -1,5 +1,5 @@
 package com.example.journalservice.db;
-
+/*
 
 
 import com.example.journalservice.core.enums.HospitalRole;
@@ -17,3 +17,4 @@ public interface PractitionerRepository extends JpaRepository<Practitioner, Stri
 
     //Optional<Practitioner> findByUserId(String userId);
 }
+*/

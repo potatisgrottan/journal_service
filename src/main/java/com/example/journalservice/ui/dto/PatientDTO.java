@@ -2,7 +2,7 @@ package com.example.journalservice.ui.dto;
 
 import com.example.journalservice.core.model.Encounter;
 import com.example.journalservice.core.model.Observation;
-import com.example.journalservice.core.model.Patient;
+/*import com.example.journalservice.core.model.Patient;
 
 import java.util.List;
 
@@ -25,4 +25,4 @@ public class PatientDTO {
     public Patient getPatient() { return patient; }
     public List<Encounter> getEncounters() { return encounters; }
     public List<Observation> getObservations() { return observations; }
-}
+}*/

@@ -1,5 +1,5 @@
 package com.example.journalservice.db;
-
+/*
 
 
 import com.example.journalservice.core.model.Patient;
@@ -20,4 +20,4 @@ public interface PatientRepository extends JpaRepository<Patient, String> {
 
     Optional<Patient> findById(String userId);
 
-}
+}*/
