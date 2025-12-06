@@ -117,6 +117,7 @@ public class EncounterService {
         obs.setPractitionerEmail(encounter.getpractitionerEmail());
         obs.setObservation(dto.getObservationText());
         obs.setTimeOfObservation(dto.getTimeOfObservation() != null ? dto.getTimeOfObservation() : new Date());
+        obs.setImageId(dto.getImageId());
 
         return observationRepository.save(obs);
     }
@@ -140,8 +141,4 @@ public class EncounterService {
                 ))
                 .toList();
     }
-
-
-
 }
-

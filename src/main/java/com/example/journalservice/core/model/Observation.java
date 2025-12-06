@@ -35,6 +35,9 @@ public class Observation {
     @Column(name = "timeofobservation")
     private Date timeOfObservation;
 
+    @Column(name = "image_id", columnDefinition = "VARCHAR(225)")
+    private String imageId;
+
     public Observation() {
         this.timeOfObservation = new Date();
     }
@@ -64,6 +67,9 @@ public class Observation {
 
     public Date getTimeOfObservation() { return timeOfObservation; }
     public void setTimeOfObservation(Date timeOfObservation) { this.timeOfObservation = timeOfObservation; }
+
+    public String getImageId() { return imageId; }
+    public void setImageId(String imageId) { this.imageId = imageId; }
 
     @Override
     public String toString() {

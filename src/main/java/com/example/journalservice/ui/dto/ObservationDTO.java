@@ -11,6 +11,7 @@ public class ObservationDTO {
     private String encounterId;
     private String observationText;
     private Date timeOfObservation;
+    private String imageId;
 
     public ObservationDTO() {}
 
@@ -19,6 +20,7 @@ public class ObservationDTO {
         this.observationText = o.getObservation();
         this.timeOfObservation = o.getTimeOfObservation();
         this.encounterId = o.getEncounter().getId();
+        this.imageId = o.getImageId();
     }
 
     public String getId() { return id; }
@@ -32,4 +34,7 @@ public class ObservationDTO {
 
     public Date getTimeOfObservation() { return timeOfObservation; }
     public void setTimeOfObservation(Date timeOfObservation) { this.timeOfObservation = timeOfObservation; }
+
+    public String getImageId() { return imageId; }
+    public void setImageId(String imageId) { this.imageId = imageId; }
 }
