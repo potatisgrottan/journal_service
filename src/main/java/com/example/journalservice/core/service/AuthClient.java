@@ -1,5 +1,6 @@
 package com.example.journalservice.core.service;
 
+import com.example.journalservice.ui.dto.PatientResponse;
 import com.example.journalservice.ui.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,7 +49,7 @@ public class AuthClient {
         }
     }
 
-    public List<UserDto> getAllPatients(String authHeader) {
+    public List<PatientResponse> getAllPatients(String authHeader) {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", authHeader);
@@ -57,11 +58,11 @@ public class AuthClient {
 
             String url = authServiceUrl + "/api/auth/users/role/PATIENT";
 
-            ResponseEntity<UserDto[]> response = restTemplate.exchange(
+            ResponseEntity<PatientResponse[]> response = restTemplate.exchange(
                     url,
                     HttpMethod.GET,
                     request,
-                    UserDto[].class
+                    PatientResponse[].class
             );
 
             return Arrays.asList(response.getBody());

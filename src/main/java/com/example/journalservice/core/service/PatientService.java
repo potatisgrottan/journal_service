@@ -18,16 +18,15 @@ public class PatientService {
 
     public List<PatientResponse> getAllPatients(String authHeader) {
 
-        List<UserDto> allUsers = authClient.getAllPatients(authHeader);
+        List<PatientResponse> allUsers = authClient.getAllPatients(authHeader);
 
         return allUsers.stream()
-                .filter(u -> "PATIENT".equals(u.role()))
                 .map(u -> new PatientResponse(
                         u.email(),
-                        u.fullName(),
-                        null,
-                        null,
-                        null,
+                        u.name(),
+                        u.personalNumber(),
+                        u.address(),
+                        u.phoneNumber(),
                         null
                 ))
                 .toList();
