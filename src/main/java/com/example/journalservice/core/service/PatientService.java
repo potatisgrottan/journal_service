@@ -35,17 +35,17 @@ public class PatientService {
 
     public PatientResponse getPatientByEmail(String email, String authHeader) {
 
-        List<UserDto> allUsers = authClient.getAllPatients(authHeader);
+        List<PatientResponse> allUsers = authClient.getAllPatients(authHeader);
 
         return allUsers.stream()
                 .filter(u -> u.email().equals(email))
                 .findFirst()
                 .map(u -> new PatientResponse(
                         u.email(),
-                        u.fullName(),
-                        null,
-                        null,
-                        null,
+                        u.name(),
+                        u.personalNumber(),
+                        u.address(),
+                        u.phoneNumber(),
                         null
                 ))
                 .orElse(null);
