@@ -6,10 +6,7 @@ import com.example.journalservice.ui.dto.ObservationDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 
 @RestController
@@ -33,14 +30,21 @@ public class EncounterController {
     }
 
 
-    @GetMapping("/patient/{patientId}")
+    @GetMapping("/patient/{patientEmail}/overview")
+    public ResponseEntity<?> getPatientOverview(@PathVariable String patientEmail) {
+
+        var result = encounterService.getFullOverviewForPatient(patientEmail);
+
+        return ResponseEntity.ok(result);
+    }
+
+    /* @GetMapping("/patient/{patientId}")
     public List<Encounter> getEncountersForPatient(@PathVariable String patientId) {
         return encounterService.findAllEncByPatient(patientId);
     }
-
-    @GetMapping("/doctor/{practitionerEmail}/patient/{patientEmail}")
-    public List<Encounter> doctorGetsEncounters(@PathVariable String practitionerEmail,
-                                                @PathVariable String patientEmail) {
+*/
+    @GetMapping("/patient/{patientEmail}")
+    public List<Encounter> doctorGetsEncounters(@PathVariable String patientEmail) {
         return encounterService.findAllEncByPatient(patientEmail);
     }
 

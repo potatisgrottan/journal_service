@@ -7,6 +7,7 @@ import com.example.journalservice.core.model.Observation;
 //import com.example.journalservice.core.model.Practitioner;
 import com.example.journalservice.db.EncounterRepository;
 import com.example.journalservice.db.ObservationRepository;
+import com.example.journalservice.ui.dto.EncounterWithObservationsDTO;
 import com.example.journalservice.ui.dto.ObservationDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -119,6 +120,27 @@ public class EncounterService {
 
         return observationRepository.save(obs);
     }
+
+
+    public List<EncounterWithObservationsDTO> getFullOverviewForPatient(String email) {
+
+        var encounters = encounterRepository.findAllByPatientEmail(email);
+
+        return encounters.stream()
+                .map(e -> new EncounterWithObservationsDTO(
+                        e.getId(),
+                        e.getDateOfEncounter(),
+                        e.getPatientEmail(),
+                        e.getpractitionerEmail(),
+                        e.getLocation(),
+                        observationRepository.findAllByEncounterId(e.getId())
+                                .stream()
+                                .map(ObservationDTO::new)
+                                .toList()
+                ))
+                .toList();
+    }
+
 
 
 }
