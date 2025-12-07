@@ -42,12 +42,13 @@ public class Observation {
         this.timeOfObservation = new Date();
     }
 
-    public Observation(Encounter encounter, String patientEmail, String practitionerEmail, String observation) {
+    public Observation(Encounter encounter, String patientEmail, String practitionerEmail, String observation, Date timeOfObservation, String imageId) {
         this.encounter = encounter;
         this.patientEmail = Observation.this.patientEmail;
         this.practitionerEmail = practitionerEmail;
         this.observation = observation;
         this.timeOfObservation = new Date();
+        this.imageId = imageId;
     }
 
     public String getId() { return id; }
