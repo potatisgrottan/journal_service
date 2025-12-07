@@ -44,7 +44,7 @@ public class Observation {
 
     public Observation(Encounter encounter, String patientEmail, String practitionerEmail, String observation, Date timeOfObservation, String imageId) {
         this.encounter = encounter;
-        this.patientEmail = Observation.this.patientEmail;
+        this.patientEmail = patientEmail;
         this.practitionerEmail = practitionerEmail;
         this.observation = observation;
         this.timeOfObservation = new Date();
@@ -58,7 +58,7 @@ public class Observation {
     public void setEncounter(Encounter encounter) { this.encounter = encounter; }
 
     public String getpatientEmail() { return patientEmail; }
-    public void setpatientEmail(String patientEmail) { this.patientEmail = Observation.this.patientEmail; }
+    public void setpatientEmail(String patientEmail) { this.patientEmail = patientEmail; }
 
     public String getPractitionerEmail() { return practitionerEmail; }
     public void setPractitionerEmail(String practitionerEmail) { this.practitionerEmail = practitionerEmail; }
