@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public record PatientResponse(
         String email,
-        String name,
+        String fullName,
         String personalNumber,
         String address,
         String phoneNumber,

@@ -23,7 +23,7 @@ public class PatientService {
         return allUsers.stream()
                 .map(u -> new PatientResponse(
                         u.email(),
-                        u.name(),
+                        u.fullName(),
                         u.personalNumber(),
                         u.address(),
                         u.phoneNumber(),
@@ -41,7 +41,7 @@ public class PatientService {
                 .findFirst()
                 .map(u -> new PatientResponse(
                         u.email(),
-                        u.name(),
+                        u.fullName(),
                         u.personalNumber(),
                         u.address(),
                         u.phoneNumber(),
