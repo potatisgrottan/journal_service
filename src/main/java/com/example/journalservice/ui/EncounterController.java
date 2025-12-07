@@ -2,6 +2,7 @@ package com.example.journalservice.ui;
 
 import com.example.journalservice.core.model.Encounter;
 import com.example.journalservice.core.service.EncounterService;
+import com.example.journalservice.db.ObservationRepository;
 import com.example.journalservice.ui.dto.ObservationDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +16,12 @@ public class EncounterController {
 
     private final EncounterService encounterService;
 
-    public EncounterController(EncounterService encounterService) {
-        this.encounterService = encounterService;
-    }
+    private final ObservationRepository observationRepository;
 
+    public EncounterController(EncounterService encounterService, ObservationRepository observationRepository) {
+        this.encounterService = encounterService;
+        this.observationRepository = observationRepository;
+    }
     @PostMapping("/make")
     public Encounter createEncounter(@RequestBody Encounter encounter) {
         return encounterService.addEncounter(
@@ -72,5 +75,10 @@ public class EncounterController {
 
         encounterService.addObservation(encounterId,dto);
         return ResponseEntity.ok("Observation saved successfully!");
+    }
+
+    @GetMapping("/observations/search")
+    public List<String> searchPatientsByObservation(@RequestParam("text") String text) {
+        return observationRepository.findPatientEmailsByObservationText(text);
     }
 }
