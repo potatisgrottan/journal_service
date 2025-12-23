@@ -25,7 +25,7 @@ public class EncounterController {
     @PostMapping("/make")
     public Encounter createEncounter(@RequestBody Encounter encounter) {
         return encounterService.addEncounter(
-                encounter.getpractitionerEmail(),
+                encounter.getPractitionerEmail(),
                 encounter.getPatientEmail(),
                 new Date(),
                 encounter.getLocation()

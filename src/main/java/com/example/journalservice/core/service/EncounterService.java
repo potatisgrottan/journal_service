@@ -65,7 +65,7 @@ public class EncounterService {
 
     public Encounter addEncounter(String practitionerEmail, String patientEmail, Date date, String location) {
         Encounter encounter = new Encounter();
-        encounter.setpractitionerEmail(practitionerEmail);
+        encounter.setPractitionerEmail(practitionerEmail);
         encounter.setPatientEmail(patientEmail);
         encounter.setDateOfEncounter(date);
         encounter.setLocation(location);
@@ -113,8 +113,8 @@ public class EncounterService {
 
         Observation obs = new Observation();
         obs.setEncounter(encounter);
-        obs.setpatientEmail(encounter.getPatientEmail());
-        obs.setPractitionerEmail(encounter.getpractitionerEmail());
+        obs.setPatientEmail(encounter.getPatientEmail());
+        obs.setPractitionerEmail(encounter.getPractitionerEmail());
         obs.setObservation(dto.getObservationText());
         obs.setTimeOfObservation(dto.getTimeOfObservation() != null ? dto.getTimeOfObservation() : new Date());
         obs.setImageId(dto.getImageId());
@@ -132,7 +132,7 @@ public class EncounterService {
                         e.getId(),
                         e.getDateOfEncounter(),
                         e.getPatientEmail(),
-                        e.getpractitionerEmail(),
+                        e.getPractitionerEmail(),
                         e.getLocation(),
                         observationRepository.findAllByEncounterId(e.getId())
                                 .stream()
