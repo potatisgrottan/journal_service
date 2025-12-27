@@ -18,12 +18,8 @@ import java.util.List;
 public class AuthClient {
 
     private final RestTemplate restTemplate;
-<<<<<<< HEAD
     @Value("http://auth-servicea:8081")
-=======
 
-    @Value("http://auth-service:8081") // Peka på din nya user-profile service
->>>>>>> c74d3d31fae8cded53cddefde14886c9e908b2e2
     private String authServiceUrl;
 
     @Autowired
