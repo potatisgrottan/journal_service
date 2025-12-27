@@ -18,7 +18,12 @@ import java.util.List;
 public class AuthClient {
 
     private final RestTemplate restTemplate;
-    @Value("http://auth-service:8081")
+<<<<<<< HEAD
+    @Value("http://auth-servicea:8081")
+=======
+
+    @Value("http://auth-service:8081") // Peka på din nya user-profile service
+>>>>>>> c74d3d31fae8cded53cddefde14886c9e908b2e2
     private String authServiceUrl;
 
     @Autowired
@@ -26,32 +31,14 @@ public class AuthClient {
         this.restTemplate = restTemplate;
     }
 
-    public UserDto validateBasicAuth(String basicAuthHeader) {
-        try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", basicAuthHeader);
+    // OBS: validateBasicAuth är BORTTAGEN. Vi litar på JWT-token nu.
 
-            HttpEntity<Void> request = new HttpEntity<>(headers);
-
-            String url = authServiceUrl+"/api/auth/validate";
-
-            ResponseEntity<UserDto> response = restTemplate.exchange(
-                    url,
-                    HttpMethod.GET,
-                    request,
-                    UserDto.class
-            );
-
-            return response.getBody();
-        } catch (Exception e) {
-            System.out.println("Auth validation failed: " + e.getMessage());
-            return null;
-        }
-    }
-
+    // Denna metod är kvar för att hämta patientlistan
     public List<PatientResponse> getAllPatients(String authHeader) {
         try {
             HttpHeaders headers = new HttpHeaders();
+            // AuthHeader kommer nu vara "Bearer <token>" istället för "Basic ..."
+            // Eftersom Auth Service också kör OAuth2 nu, fungerar detta direkt!
             headers.set("Authorization", authHeader);
 
             HttpEntity<Void> request = new HttpEntity<>(headers);
@@ -65,11 +52,10 @@ public class AuthClient {
                     PatientResponse[].class
             );
 
-            return Arrays.asList(response.getBody());
+            return response.getBody() != null ? Arrays.asList(response.getBody()) : List.of();
         } catch (Exception e) {
             System.out.println("Failed to fetch users from auth-service: " + e.getMessage());
             return List.of();
         }
     }
 }
-
