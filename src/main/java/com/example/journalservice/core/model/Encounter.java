@@ -20,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "encounter")
 public class Encounter {
-
+// actions test
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
